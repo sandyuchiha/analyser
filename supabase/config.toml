@@ -1,0 +1,10 @@
+project_id = "ubqtbydepaelbjalkiok"
+
+[functions.analyze]
+verify_jwt = false
+
+[functions.chat]
+verify_jwt = false
+
+[functions.generate-document]
+verify_jwt = false

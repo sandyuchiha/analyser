@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ANALYSER Design System — Dark, Professional, Calm */
+
+@layer base {
+  :root {
+    /* Light mode - kept minimal as dark is primary */
+    --background: 220 20% 97%;
+    --foreground: 220 25% 10%;
+
+    --card: 220 20% 100%;
+    --card-foreground: 220 25% 10%;
+
+    --popover: 220 20% 100%;
+    --popover-foreground: 220 25% 10%;
+
+    --primary: 195 80% 45%;
+    --primary-foreground: 220 25% 98%;
+
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 220 25% 10%;
+
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 175 65% 40%;
+    --accent-foreground: 220 25% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 195 80% 45%;
+
+    --radius: 0.625rem;
+
+    --sidebar-background: 220 20% 97%;
+    --sidebar-foreground: 220 25% 10%;
+    --sidebar-primary: 195 80% 45%;
+    --sidebar-primary-foreground: 220 25% 98%;
+    --sidebar-accent: 220 15% 92%;
+    --sidebar-accent-foreground: 220 25% 10%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 195 80% 45%;
+  }
+
+  .dark {
+    /* Near-black background with subtle blue undertone */
+    --background: 225 25% 6%;
+    --foreground: 210 25% 92%;
+
+    --card: 225 22% 9%;
+    --card-foreground: 210 25% 92%;
+
+    --popover: 225 22% 9%;
+    --popover-foreground: 210 25% 92%;
+
+    /* Primary: Calm teal-blue */
+    --primary: 195 75% 50%;
+    --primary-foreground: 225 25% 6%;
+
+    /* Secondary: Subtle elevated surface */
+    --secondary: 225 20% 14%;
+    --secondary-foreground: 210 25% 88%;
+
+    /* Muted: For subtle text and backgrounds */
+    --muted: 225 18% 12%;
+    --muted-foreground: 215 15% 55%;
+
+    /* Accent: Teal for highlights */
+    --accent: 175 60% 45%;
+    --accent-foreground: 225 25% 6%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders: Very subtle */
+    --border: 225 15% 15%;
+    --input: 225 18% 14%;
+    --ring: 195 75% 50%;
+
+    --sidebar-background: 225 22% 8%;
+    --sidebar-foreground: 210 25% 88%;
+    --sidebar-primary: 195 75% 50%;
+    --sidebar-primary-foreground: 225 25% 6%;
+    --sidebar-accent: 225 18% 12%;
+    --sidebar-accent-foreground: 210 25% 88%;
+    --sidebar-border: 225 15% 15%;
+    --sidebar-ring: 195 75% 50%;
+  }
+
+  /* Custom design tokens for ANALYSER */
+  :root, .dark {
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(195, 75%, 50%), hsl(175, 60%, 45%));
+    --gradient-subtle: linear-gradient(180deg, hsl(225, 22%, 9%), hsl(225, 25%, 6%));
+    --gradient-glow: radial-gradient(ellipse at center, hsl(195, 75%, 50%, 0.15), transparent 70%);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px -2px hsl(225, 25%, 0%, 0.3);
+    --shadow-md: 0 8px 24px -8px hsl(225, 25%, 0%, 0.4);
+    --shadow-lg: 0 16px 48px -12px hsl(225, 25%, 0%, 0.5);
+    --shadow-glow: 0 0 40px hsl(195, 75%, 50%, 0.2);
+    --shadow-glow-accent: 0 0 40px hsl(175, 60%, 45%, 0.2);
+
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Typography scale */
+    --font-display: 'Outfit', system-ui, sans-serif;
+    --font-body: 'Outfit', system-ui, sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Force dark mode for ANALYSER */
+  html {
+    color-scheme: dark;
+  }
+}
+
+@layer components {
+  /* Hero button variant styles */
+  .btn-hero {
+    @apply relative overflow-hidden bg-primary text-primary-foreground font-medium;
+    @apply px-8 py-4 rounded-lg;
+    @apply transition-all duration-300;
+    @apply hover:shadow-[var(--shadow-glow)];
+  }
+
+  .btn-hero::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: var(--gradient-primary);
+  }
+
+  .btn-hero:hover::before {
+    @apply opacity-100;
+  }
+
+  .btn-ghost-hero {
+    @apply border border-border/50 text-foreground/80 font-medium;
+    @apply px-8 py-4 rounded-lg;
+    @apply transition-all duration-300;
+    @apply hover:border-primary/50 hover:text-foreground hover:bg-primary/5;
+  }
+
+  /* Card with glow effect */
+  .card-glow {
+    @apply relative bg-card border border-border rounded-xl p-6;
+    @apply transition-all duration-300;
+  }
+
+  .card-glow:hover {
+    @apply border-primary/30;
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Subtle gradient background */
+  .bg-gradient-subtle {
+    background: var(--gradient-subtle);
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glow orb effect */
+  .glow-orb {
+    @apply absolute rounded-full blur-3xl opacity-20 pointer-events-none;
+    background: var(--gradient-primary);
+  }
+
+  /* Feature card */
+  .feature-card {
+    @apply bg-secondary/50 border border-border/50 rounded-xl p-6;
+    @apply transition-all duration-300;
+  }
+
+  .feature-card:hover {
+    @apply bg-secondary border-border;
+  }
+
+  /* Input focus styles */
+  .input-analyser {
+    @apply bg-input border border-border rounded-lg px-4 py-3;
+    @apply text-foreground placeholder:text-muted-foreground;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring/50 focus:border-primary/50;
+    @apply transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-delay-1 {
+    animation: fadeIn 0.6s ease-out 0.1s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-delay-2 {
+    animation: fadeIn 0.6s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-delay-3 {
+    animation: fadeIn 0.6s ease-out 0.3s forwards;
+    opacity: 0;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+}
